@@ -27,14 +27,22 @@ def start_progress():
     progress.stop()
 
 def selact():
+    global act
     actions = askopenfilename()
     if actions:
         actbut.config(bg='spring green', text='Actions Selected ✅')
+        act = True
+        if sta:
+            start_button.config(state="normal")
 
 def selsta():
+    global sta
     statements = askopenfilename()
     if statements:
         stabut.config(bg='spring green', text='Statements Selected ✅')
+        sta = True
+        if act:
+            start_button.config(state="normal")
 
 m = tk.Tk(screenName=None,  baseName=None,  className='Tk',  useTk=1)
 m.title('SAC Expensive Statements Tool')
@@ -49,7 +57,8 @@ stabut = tk.Button(m, text="Select Statements", command=selsta, activebackground
 progress = ttk.Progressbar(m, style='', length=300, mode="determinate")
 
 # Button to start progress
-start_button = tk.Button(m, text="Create Summary", command=start_progress, bg='turquoise', activebackground='dark turquoise')
+start_button = tk.Button(m, text="Create Summary", command=start_progress, 
+                         bg='turquoise', activebackground='dark turquoise', state='disabled')
 
 label = tk.Label(m, text='Select Files and Create Summary!')
 text = tk.Label(m, text='Summary Created!')
