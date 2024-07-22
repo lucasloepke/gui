@@ -32,8 +32,10 @@ def selact():
     if actions:
         actbut.config(bg='spring green', text='Actions Selected ✅')
         act = True
-        if sta:
-            start_button.config(state="normal")
+        try:
+            if sta:
+                start_button.config(state="normal")
+        except: return
 
 def selsta():
     global sta
@@ -41,8 +43,10 @@ def selsta():
     if statements:
         stabut.config(bg='spring green', text='Statements Selected ✅')
         sta = True
-        if act:
-            start_button.config(state="normal")
+        try:
+            if act:
+                start_button.config(state="normal")
+        except: return
 
 m = tk.Tk(screenName=None,  baseName=None,  className='Tk',  useTk=1)
 m.title('SAC Expensive Statements Tool')
